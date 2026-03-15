@@ -3,17 +3,25 @@ import ollama
 def generate_quiz(topic):
 
     prompt = f"""
-Create ONE multiple choice question about {topic}.
+Create 7 multiple choice questions about {topic}.
 
-Format strictly:
+Format strictly like this:
 
-Question:
+Question 1:
 A)
 B)
 C)
 D)
-
 Correct Answer:
+
+Question 2:
+A)
+B)
+C)
+D)
+Correct Answer:
+
+Continue until Question 7.
 """
 
     response = ollama.chat(
