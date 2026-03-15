@@ -17,26 +17,31 @@ print("\n--- Quiz ---\n")
 
 quiz = generate_quiz(topic)
 
-# Hide correct answer
-question_only = quiz.split("Correct Answer")[0]
+questions = quiz.split("Question")[1:]
 
-print(question_only)
+for i, q in enumerate(questions, start=1):
 
-answer = input("\nYour answer (A/B/C/D): ").strip().upper()
+    question_text = "Question" + q
+    question_only = question_text.split("Correct Answer")[0]
 
-print("\n--- Evaluation ---\n")
+    print("\n----------------------------")
+    print(question_only)
 
-evaluation = evaluate_answer(question_only, answer)
+    user_answer = input("Your answer (A/B/C/D): ").strip().upper()
 
-print(evaluation)
+    print("\n--- Evaluation ---")
 
-correct = "Correct" in evaluation
-memory.update(correct)
+    evaluation = evaluate_answer(question_only, user_answer)
 
-print("\n--- Feedback ---\n")
+    print(evaluation)
 
-feedback = give_feedback(topic, evaluation)
-print(feedback)
+    correct = "Correct" in evaluation
+    memory.update(correct)
 
-print("\n--- Progress ---\n")
+    print("\n--- Feedback ---")
+
+    feedback = give_feedback(topic, evaluation)
+    print(feedback)
+
+print("\n--- Final Score ---")
 print(memory.stats())
